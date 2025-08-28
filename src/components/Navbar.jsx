@@ -3,6 +3,7 @@ import DarkModeToggle from "./DarkModeToggle";
 
 const navItems = [
   { id: "about", label: "About" },
+  // { id: "blog", label: "Blog" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
@@ -22,7 +23,7 @@ export default function Navbar({ dark, setDark }) {
               {n.label}
             </a>
           ))}
-          <DarkModeToggle dark={dark} setDark={setDark} />
+          {/* <DarkModeToggle dark={dark} setDark={setDark} /> */}
         </nav>
 
         {/* mobile */}

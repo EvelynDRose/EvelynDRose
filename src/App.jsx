@@ -9,23 +9,25 @@ import Education from "./components/Education";
 import Publications from "./components/Publications";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Blog from "./components/Blog";
 
 export default function App() {
-  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
+  // const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (dark) root.classList.add("dark");
-    else root.classList.remove("dark");
-    localStorage.setItem("theme", dark ? "dark" : "light");
-  }, [dark]);
+  // useEffect(() => {
+  //   const root = window.document.documentElement;
+  //   if (dark) root.classList.add("dark");
+  //   else root.classList.remove("dark");
+  //   localStorage.setItem("theme", dark ? "dark" : "light");
+  // }, [dark]);
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors">
-      <Navbar dark={dark} setDark={setDark} />
+      <Navbar />
       <main className="pt-20">
         <Hero />
         <About />
+        {/* <Blog /> */}
         <Skills />
         <Projects />
         <Experience />

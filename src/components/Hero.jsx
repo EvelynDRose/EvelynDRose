@@ -39,8 +39,8 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="flex justify-center"
         >
-          <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-2xl shadow-xl overflow-hidden bg-gradient-to-tr from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
-            <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
+          <div className="relative w-80 h-100 md:w-80 md:h-100 rounded-2xl shadow-xl overflow-hidden bg-gradient-to-tr from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
+            <img src="imgs/self/me.png" alt="Profile" className="w-full h-full object-cover" />
           </div>
         </motion.div>
       </div>

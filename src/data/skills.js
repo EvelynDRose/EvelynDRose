@@ -1,6 +1,6 @@
 const skills = [
   { name: "Python", level: 90, icon: "🐍" },
-  { name: "C++", level: 80, icon: "💻" },
+  { name: "C++", level: 60, icon: "💻" },
   { name: "Java", level: 60, icon: "☕" },
   { name: "TensorFlow", level: 90, icon: "🧠" },
   { name: "PyTorch", level: 90, icon: "🔥" },

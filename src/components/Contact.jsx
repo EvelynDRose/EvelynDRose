@@ -2,20 +2,27 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState(null);
-
-  function handleChange(e) {
-    setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setStatus("Sending...");
+
+    const formData = new FormData(e.target);
+
     try {
-      setStatus("Sending...");
-      await new Promise((r) => setTimeout(r, 700));
-      setStatus("Message sent — thanks!");
-      setForm({ name: "", email: "", message: "" });
+      const response = await fetch("https://formspree.io/f/mqadajly", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        setStatus("Message sent — thanks!");
+        e.target.reset();
+      } else {
+        setStatus("Failed to send. Try again later.");
+      }
     } catch (err) {
       setStatus("Failed to send. Try again later.");
     }
@@ -42,15 +49,27 @@ export default function Contact() {
           className="mb-8 text-center space-y-2"
         >
           <p>
-            📧 Email: <a href="mailto:evelyndrose19@gmail.com" className="text-blue-600 hover:underline">evelyndrose19@gmail.com</a>
+            📧 Email:{" "}
+            <a
+              href="mailto:evelyndrose19@gmail.com"
+              className="text-blue-600 hover:underline"
+            >
+              evelyndrose19@gmail.com
+            </a>
           </p>
           <p>
-            📞 Phone: <a href="tel:+18303310255" className="text-blue-600 hover:underline">830-331-0255</a>
+            📞 Phone:{" "}
+            <a
+              href="tel:+18303310255"
+              className="text-blue-600 hover:underline"
+            >
+              830-331-0255
+            </a>
           </p>
           <p>🏠 Address: 309 Kendall Pkwy, Boerne, TX 78015</p>
         </motion.div>
 
-        {/* Contact Form */}
+        {/* Contact Form (Formspree) */}
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 6 }}
@@ -58,26 +77,22 @@ export default function Contact() {
           className="grid gap-4"
         >
           <input
+            type="text"
             name="name"
             required
-            value={form.name}
-            onChange={handleChange}
             placeholder="Your name"
             className="p-3 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
           />
           <input
+            type="email"
             name="email"
             required
-            value={form.email}
-            onChange={handleChange}
             placeholder="Your email"
             className="p-3 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
           />
           <textarea
             name="message"
             required
-            value={form.message}
-            onChange={handleChange}
             rows="6"
             placeholder="Message"
             className="p-3 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
@@ -90,7 +105,9 @@ export default function Contact() {
               Send Message
             </button>
             {status && (
-              <div className="text-sm text-gray-600 dark:text-gray-300">{status}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">
+                {status}
+              </div>
             )}
           </div>
         </motion.form>
